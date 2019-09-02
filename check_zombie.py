@@ -47,16 +47,19 @@ MC2016v4v5,
 DATA2016v4v5
 ]
 
-BASEDIR='/xrootd/store/user/jhchoi/Latino/HWWNano/'
-
+#BASEDIR='/xrootd/store/user/jhchoi/Latino/HWWNano/'
+BASEDIR='/xrootd_user/jhchoi/xrootd/Latino/HWWNano/'
 for dic in CheckList:
     SAMPLEDIR=BASEDIR+'/'+dic['Production']+'/'+dic['Step']
     filelist=glob.glob(SAMPLEDIR+'/*.root')
 
     print "=====",SAMPLEDIR,"====="
+    flog=open('Zombie__'+dic['Production']+'__'+dic['Step']+'.log','w')
     
-
     for f in filelist:
         if not ROOT.TFile.Open(f):
             print '[FAIL]',f
-        
+            flog.write(f+'\n')
+
+
+    flog.close()
