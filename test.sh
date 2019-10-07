@@ -1,0 +1,2 @@
+SendMail(GetScriptName())
+SendMail(GetScriptName())
