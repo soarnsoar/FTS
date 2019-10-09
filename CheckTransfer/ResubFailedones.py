@@ -22,8 +22,10 @@ lines=f.readlines()
 
 
 for s in lines:
-    if len(s)==0: continue
-    if s=="": continue
+    if len(s)==0 or s.replace(' ','')=="": 
+        print "->empty sample name, pass"
+        continue
+    
     s=s.split('/')[-1]
     this_list=job.MakeList(Sample=s)
     job.Run(this_list)
