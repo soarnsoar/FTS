@@ -41,8 +41,9 @@ class latinoTransfer:
         thispath=BASEDIR+'/'+Production+'/'+Step+'/*'+Sample+'*.root'
         print thispath
         mylist=glob.glob(thispath)
-
-
+        print "--TRANSFER LIST--"
+        print thispath
+        print "--TRANSFER LIST[END]--"
 
         return mylist
 
