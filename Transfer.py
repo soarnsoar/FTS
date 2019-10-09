@@ -21,11 +21,17 @@ class latinoTransfer:
         self.Step=''
         
 
-    def Run(self,mylist):
+    def Run(self,mylist,overwrite=True):
+        print "--TRANSFER LIST--"
+        print mylist
+        print "--TRANSFER LIST[END]--"
+
         for this_sample in mylist:
-
-            os.system('gfal-copy -K ADLER32 '+self.ADDRESS_From+'/'+this_sample+' '+self.ADDRESS_To+'/'+self.BASEDIR_To+'/'+self.Production+'/'+self.Step+'/')
-
+            if overwrite:
+                os.system('gfal-copy -K ADLER32 -f '+self.ADDRESS_From+'/'+this_sample+' '+self.ADDRESS_To+'/'+self.BASEDIR_To+'/'+self.Production+'/'+self.Step+'/')
+            else:
+                os.system('gfal-copy -K ADLER32 '+self.ADDRESS_From+'/'+this_sample+' '+self.ADDRESS_To+'/'+self.BASEDIR_To+'/'+self.Production+'/'+self.Step+'/')
+            
     def MakeList(self,Sample):
 
         print'"===Make List of ',Sample,'==='
@@ -38,12 +44,12 @@ class latinoTransfer:
         Production=self.Production
         Step=self.Step
 
-        thispath=BASEDIR+'/'+Production+'/'+Step+'/*'+Sample
+        thispath=BASEDIR+'/'+Production+'/'+Step+'/*'+Sample+'*'
         print thispath
         mylist=glob.glob(thispath)
-        print "--TRANSFER LIST--"
-        print mylist
-        print "--TRANSFER LIST[END]--"
+        #print "--TRANSFER LIST--"
+        #print mylist
+        #print "--TRANSFER LIST[END]--"
 
         return mylist
 
@@ -51,7 +57,7 @@ class latinoTransfer:
 
 
 
-
+'''
 
 DATA2016nAODv4_v5={
     'Production':'Run2016_102X_nAODv4_Full2016v5',
@@ -69,3 +75,4 @@ job.Run(this_list)
 
 
 
+'''
