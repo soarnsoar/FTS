@@ -42,7 +42,7 @@ class latinoTransfer:
         print thispath
         mylist=glob.glob(thispath)
         print "--TRANSFER LIST--"
-        print thispath
+        print mylist
         print "--TRANSFER LIST[END]--"
 
         return mylist
